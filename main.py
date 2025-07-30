@@ -20,7 +20,7 @@ from nft_utils import (
     download_and_save_tgs_as_json,
     download_transparent_png_from_svg,
     download_tgs_file,
-    get_quantity
+    get_current_quantity
 )
 from database import create_pool, create_table, insert_nft_batch, update
 from dotenv import load_dotenv
