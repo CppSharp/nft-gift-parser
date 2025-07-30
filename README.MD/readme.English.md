@@ -57,7 +57,7 @@ NFT Gifts Parser is an asynchronous NFT data parser (via t.me/{slug}). The code 
 1. **Clone the repository**
 
    ```bash
-   git clone https://github.com/yourusername/nft-parser.git
+   git clone https://github.com/CppSharp/nft-gift-parser.git
    cd nft-parser
    ```
 
