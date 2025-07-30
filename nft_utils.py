@@ -60,12 +60,16 @@ def download_transparent_png_from_svg(page_url: str, save_path: str) -> None:
     with open(save_path, "wb") as f:
         f.write(png_data)
 
-async def get_quantity(url: str) -> int:
-    async with aiohttp.ClientSession() as session:
-        async with session.get(url, timeout=aiohttp.ClientTimeout(total=10)) as resp:
-            if resp.status != 200:
-                return 0
-            text = await resp.text()
-    td = fromstring(text).xpath('//th[text()="Quantity"]/following-sibling::td[1]/text()')[0]
-    quantity = int(td.replace('\xa0', '').split('/')[0])
-    return quantity
+async def get_current_quantity(session):
+    async with throttler, session.get(BASE_URL + "1") as resp:
+        resp.raise_for_status()
+        text = await resp.text()
+    tree = html.fromstring(text)
+    qty = tree.xpath(
+        '//table[contains(@class,"tgme_gift_table")]'
+        '//tr[th[contains(translate(., "Q","q"), "quantity")]]/td/text()'
+    )
+    if not qty:
+        logger.error("Quantity field not found")
+        raise RuntimeError("Quantity field not found")
+    return int(qty[0].split('/')[0].replace('\u00A0', '').replace(',', ''))
