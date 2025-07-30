@@ -57,7 +57,7 @@ NFT Gifts Parser — це асинхронний парсер даних NFT (ч
 1. **Клонувати репозиторій**
 
    ```bash
-   git clone https://github.com/yourusername/nft-parser.git
+   git clone https://github.com/CppSharp/nft-gift-parser.git
    cd nft-parser
    ```
 
