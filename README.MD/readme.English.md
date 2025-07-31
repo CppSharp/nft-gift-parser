@@ -1,15 +1,15 @@
 # NFT Parser
 
-## 💖 Support Me
+## 💖 Support the Project
 
-If you find this parser helpful and want to support me (and Komugi 🐈‍⬛),  
-please consider making a donation:
+If you found this parser useful, please consider supporting me — and show some love to Komugi 🐈‍⬛:
 
-[Donate to Komugi](https://cppsharp.github.io/#donate)  
+👉 [**Support Komugi**](https://cppsharp.github.io/#donate)
 
-<img src="files/komugi_and_komaru.png" alt="Komugi and Komaru" width="150" style="margin-top:10px;"/>
+![Komugi and Komaru](files/komugi_and_komaru.png)
 
-Any support is greatly appreciated! Thank you! 🙏
+Thank you for your support
+
 
 
 
