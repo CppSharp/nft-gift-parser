@@ -22,7 +22,6 @@ async def update_table(pool, table_name: str):
         total_site = await get_current_quantity(session)
     logger.info(f"[{table_name}] Current quantity on the website: {total_site}")
 
-    # Если есть новые записи
     if total_site > max_db:
         missing = list(range(max_db + 1, total_site + 1))
         logger.info(f"[{table_name}] New numbers: {missing[0]}–{missing[-1]}")
@@ -49,11 +48,9 @@ async def main():
     pool = await create_pool()
     try:
         while True:
-            # Получаем все таблицы в базе
             tables = await list_tables(pool)
             logger.info(f"Tables for updating: {tables}")
 
-            # Обновляем каждую таблицу
             for tbl in tables:
                 try:
                     await update_table(pool, tbl)
