@@ -1,7 +1,8 @@
+# database.py
 import aiomysql
 import os
 from dotenv import load_dotenv
-from typing import Any
+from typing import Any, List
 
 load_dotenv()
 
@@ -18,11 +19,18 @@ db_config = {
 required_keys = ["user", "password"]
 for key in required_keys:
     if not db_config.get(key):
-        raise ValueError
+        raise ValueError(f"Missing DB config: {key}")
 
-async def create_pool():
+async def create_pool() -> aiomysql.Pool:
     pool = await aiomysql.create_pool(**db_config)
     return pool
+
+async def list_tables(pool: aiomysql.Pool) -> List[str]:
+    async with pool.acquire() as conn:
+        async with conn.cursor() as cur:
+            await cur.execute("SHOW TABLES")
+            rows = await cur.fetchall()
+    return [row[0] for row in rows]
 
 async def create_table(pool: aiomysql.Pool, table_name: str):
     async with pool.acquire() as conn:
@@ -63,22 +71,11 @@ async def insert_nft_batch(pool: aiomysql.Pool, data_list: list, table_name: str
             """
             await cur.executemany(
                 query,
-                [
-                    (
-                        data["name"],
-                        data["number"],
-                        data["m"],
-                        data["bd"],
-                        data["s"],
-                        data["mchance"],
-                        data["bdchance"],
-                        data["schance"],
-                        data["hex1"],
-                        data["hex2"],
-                        data["s_in_dir"],
-                    )
-                    for data in data_list
-                ],
+                [(
+                    data["name"], data["number"], data["m"], data["bd"], data["s"],
+                    data["mchance"], data["bdchance"], data["schance"],
+                    data["hex1"], data["hex2"], data["s_in_dir"]
+                ) for data in data_list]
             )
             await conn.commit()
 
