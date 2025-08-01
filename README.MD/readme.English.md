@@ -8,7 +8,8 @@ If you found this parser useful, please consider supporting me — and show some
 
 ![Komugi and Komaru](files/komugi_and_komaru.png)
 
-Thank you for your support
+If you can't donate right now, you can still support the project by giving it a ⭐.  
+Thanks
 
 
 
