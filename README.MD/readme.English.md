@@ -1,6 +1,6 @@
 # NFT Parser
 
-## 💖 Support the Project
+## 💖 Support me
 
 If you found this parser useful, please consider supporting me — and show some love to Komugi 🐈‍⬛:
 
